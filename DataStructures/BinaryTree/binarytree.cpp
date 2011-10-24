@@ -24,7 +24,7 @@ Node *root = NULL;
 // Arguments: root = Root element
 //            data - new item to insert
 //
-void insertItem(Node **root, int data){
+void insertItem(Node **root, const int data){
  
     Node **tmp = root;
     Node *newNode = (Node*)malloc(sizeof(Node));
@@ -99,6 +99,8 @@ void DFSPrint(Node *root){
     }
     cout << endl;
 }
+
+
 
 // Name: main
 //
