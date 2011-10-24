@@ -11,10 +11,10 @@ inline void swap(char *a, char *b){
 }
 
 string ReverseString(string str, int L, int R){
-    int N = R;
+    int N = R-L+1;
     cout << "string to reverse: " << str << endl;
-    for(int i=L; i < N/2; ++i){
-        swap(&str[i],&str[N-i-1]);
+    for(int i=0; i < N/2; ++i){
+        swap(&str[i],&str[L+N-1-i]);
     }
     return str;
 }
@@ -29,7 +29,7 @@ string ReverseWords(string str){
         for(int j=0; j <= str.size(); ++j){
 
             if( j == str.size() || str[j] == ' '){
-                str = ReverseString(str,i,j);
+                str = ReverseString(str,i,j-1);
                 i = j+1;
             }
         }
