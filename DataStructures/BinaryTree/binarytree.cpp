@@ -6,14 +6,24 @@
 
 using namespace std;
 
-
+// Tree Node definition
+//
 typedef struct Node{
     struct Node *left, *right;
     int data;
 }Node;
 
+// Root element
 Node *root = NULL;
 
+
+// Name: insertItem
+// 
+// Description: Inserts a new item into the Binary Tree
+//
+// Arguments: root = Root element
+//            data - new item to insert
+//
 void insertItem(Node **root, int data){
  
     Node **tmp = root;
@@ -35,6 +45,13 @@ void insertItem(Node **root, int data){
     *tmp = newNode;
 }
 
+
+// Name: BFSPrint
+//
+// Description: Performs a Breadth-first Search print
+//
+// Arguments: root = Root element
+//
 void BFSPrint(Node *root){
     queue<Node *>q;
     q.push(root);
@@ -54,6 +71,13 @@ void BFSPrint(Node *root){
     cout << endl;  
 }
 
+
+// Name: DFSPrint
+//
+// Description: Performs a Depth-first Search print
+//
+// Arguments: root - Root element
+//
 void DFSPrint(Node *root){
 
     stack<Node *> s;
@@ -76,7 +100,12 @@ void DFSPrint(Node *root){
     cout << endl;
 }
 
+// Name: main
+//
+// Description: Main driver of execution
+//
 int main(void){
+  
     insertItem(&root,5);
     insertItem(&root,3);
     insertItem(&root,7);
@@ -86,5 +115,6 @@ int main(void){
  
     BFSPrint(root);
     DFSPrint(root);
+
     return 0;
 }
