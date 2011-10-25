@@ -188,6 +188,20 @@ Node *ReverseList(Node *head){
     return prev;
 }
 
+// Name: FreeList
+//
+// Description: Free the memory allocated to construct the list
+//
+void FreeList(Node *head){
+    Node *tmp = NULL;
+    Node *curr = head;
+    while(curr){
+        tmp = curr;
+        curr = curr->next;
+        free(tmp);
+    }
+}
+
 // Name: main
 //
 // Description: Main driver for the application
@@ -221,6 +235,11 @@ int main(void){
     PrintList(list1);
     cout << "Items in the second list: ";
     PrintList(list2);
+    FreeList(root);
+    root = NULL;
+    list1 = NULL;
+    list2 = NULL;
+    reverse = NULL;
     return EXIT_SUCCESS;
 }
 /* Output: 
