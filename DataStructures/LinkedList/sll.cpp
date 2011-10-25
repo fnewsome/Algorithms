@@ -23,7 +23,7 @@ Node *root = NULL;
 //
 // Returns: Node - pointer to the Node
 //
-Node* CreateNode(int data){
+Node *CreateNode(int data){
     Node *newNode = (Node*)malloc(sizeof(Node));
  
     if(newNode){
@@ -40,12 +40,15 @@ Node* CreateNode(int data){
 // Arguments: head    - start of the list
 //            newNode - new item to add
 //
-void InsertNode(Node* head, Node *newNode){
+void InsertNode(Node *head, Node *newNode){
     Node *tmp = head;
     Node *prev = NULL;
 
+
+    // case1: no elements
     if(!tmp){ root = newNode; return; }
 
+    // case2: at least one element
     while(tmp){
         if(tmp->data > newNode->data){
             break;    
@@ -97,6 +100,30 @@ int GetLength(Node *head){
     return count;
 }
 
+
+// Name: RemoveNode
+// 
+// Description: Removes an item from the list
+//
+// Arguments: head - start of the list
+//            data - data value to delete
+//
+Node *RemoveNode(Node* head, int data){
+    Node *tmp = head;
+    Node *prev = NULL;
+
+    if(!tmp){ return NULL; }
+
+    if(!prev){ root = tmp->next; return tmp; }
+
+    while(tmp){
+        if(tmp->data == data) break;
+        tmp = tmp->next;        
+    }
+    prev->next = tmp->next;
+    return tmp;
+}
+
 // Name: SplitLinkedList
 // 
 // Description: Given a linked list, split the list in two
@@ -138,15 +165,32 @@ int main(void){
 
     Node *list1, *list2;
     InsertNode(root,CreateNode(5));
+    cout << "List contains: "; 
+    PrintList(root);
+    RemoveNode(root,5);
+    cout << "List after removing '5': ";
+    PrintList(root);
     InsertNode(root,CreateNode(2));
     InsertNode(root,CreateNode(1));
     InsertNode(root,CreateNode(3));
     InsertNode(root,CreateNode(4));
     InsertNode(root,CreateNode(6));
+    InsertNode(root,CreateNode(5));
+    cout << "New list contains: ";
     PrintList(root);
+    cout << "Preparing to split the list in half" << endl;
     SplitLinkedList(root,&list1,&list2);
-    cout << "Start of second list is: " << list2->data << endl;
+    cout << "Items in the first list: ";
+    PrintList(list1);
     cout << "Items in the second list: ";
     PrintList(list2);
     return EXIT_SUCCESS;
 }
+/* Output: 
+List contains: 5 
+List after removing '5': 
+New list contains: 1 2 3 4 5 6 
+Preparing to split the list in half
+Items in the first list: 1 2 3 
+Items in the second list: 4 5 6   
+*/
