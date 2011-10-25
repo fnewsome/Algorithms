@@ -3,10 +3,10 @@
 
 using namespace std;
 
-// Definition of our Singly Linked list item
+// Definition of our Doubly Linked list item
 //
 typedef struct Node{
-    struct Node *next;
+    struct Node *next, *prev;
     int data;
 }Node;
 
@@ -28,6 +28,7 @@ Node *CreateNode(int data){
  
     if(newNode){
         newNode->next = NULL;
+        newNode->prev = NULL;
         newNode->data = data;
     }
     return newNode;
@@ -46,7 +47,10 @@ void InsertNode(Node *head, Node *newNode){
 
 
     // case1: no elements
-    if(!tmp){ root = newNode; return; }
+    if(!tmp){ 
+        root = newNode; 
+        return; 
+    }
 
     // case2: at least one element
     while(tmp){
@@ -60,11 +64,16 @@ void InsertNode(Node *head, Node *newNode){
     }
     if(prev){
         prev->next = newNode;
+        newNode->prev = prev;
     }
     else{
         root = newNode; 
     }
+    if(tmp){
+        tmp->prev = newNode;
+    }
     newNode->next = tmp;
+    
 }
 
 // Name: PrintList
@@ -75,12 +84,12 @@ void InsertNode(Node *head, Node *newNode){
 //
 void PrintList(Node *head){
     Node *tmp = head;
-    
-    if(!tmp) { 
+
+    if(!tmp){ 
         cout << "<empty list>\n";
         return;
     }
-
+  
     while(tmp){
         cout << tmp->data << " ";
         tmp = tmp->next;
@@ -128,10 +137,11 @@ Node *RemoveNode(Node* head, int data){
 
     while(tmp){
         if(tmp->data == data) 
-           break;
+            break;
         tmp = tmp->next;        
     }
     prev->next = tmp->next;
+    tmp->next->prev = prev;
     return tmp;
 }
 
@@ -159,6 +169,7 @@ void SplitLinkedList(Node *head, Node** list1, Node **list2){
             // so seperate the lists
             //
             prev->next = NULL;
+            tmp->prev = NULL;
             *list2 = tmp;
             break;
         }
@@ -178,18 +189,16 @@ int main(void){
     InsertNode(root,CreateNode(5));
     cout << "List contains: "; 
     PrintList(root);
-    RemoveNode(root,5);
+    Node *deleted = RemoveNode(root,5);
+    free(deleted);
     cout << "List after removing '5': ";
     PrintList(root);
-    
-    // Create a new list
     InsertNode(root,CreateNode(2));
     InsertNode(root,CreateNode(1));
     InsertNode(root,CreateNode(3));
     InsertNode(root,CreateNode(4));
     InsertNode(root,CreateNode(6));
     InsertNode(root,CreateNode(5));
-    
     cout << "New list contains: ";
     PrintList(root);
     cout << "Preparing to split the list in half" << endl;
@@ -202,7 +211,7 @@ int main(void){
 }
 /* Output: 
 List contains: 5 
-List after removing '5': 
+List after removing '5': <empty list> 
 New list contains: 1 2 3 4 5 6 
 Preparing to split the list in half
 Items in the first list: 1 2 3 
