@@ -168,6 +168,26 @@ void SplitLinkedList(Node *head, Node** list1, Node **list2){
     }    
 }
 
+// Name: ReverseList
+//
+// Description: Reverses the linked list given
+//
+//
+Node *ReverseList(Node *head){
+
+    Node *curr = head;
+    Node *prev = NULL;
+    Node *next = NULL;
+
+    while(curr){
+        next = curr->next;
+        curr->next = prev;
+        prev = curr, curr = next;
+
+    }
+    return prev;
+}
+
 // Name: main
 //
 // Description: Main driver for the application
@@ -192,8 +212,11 @@ int main(void){
     
     cout << "New list contains: ";
     PrintList(root);
-    cout << "Preparing to split the list in half" << endl;
-    SplitLinkedList(root,&list1,&list2);
+    Node *reverse = ReverseList(root);
+    cout << "Reverse the list: ";
+    PrintList(reverse);
+    cout << "Split the list in half" << endl;
+    SplitLinkedList(reverse,&list1,&list2);
     cout << "Items in the first list: ";
     PrintList(list1);
     cout << "Items in the second list: ";
@@ -202,9 +225,10 @@ int main(void){
 }
 /* Output: 
 List contains: 5 
-List after removing '5': 
+List after removing '5': <empty list>
 New list contains: 1 2 3 4 5 6 
-Preparing to split the list in half
-Items in the first list: 1 2 3 
-Items in the second list: 4 5 6   
+Reverse the list: 6 5 4 3 2 1 
+Split the list in half
+Items in the first list: 6 5 4 
+Items in the second list: 3 2 1
 */
