@@ -106,21 +106,37 @@ void PrintItems(int *list, int size){
    cout << endl;
 }
 
-int binarySearch(int list[], int key, int size){
+
+// Name: BinarySearch
+//
+// Description: Look for a number in a list using the binary search algorithm
+// 
+// Arguments: list - list of integers
+//            key  - key value to search for
+//            size - size of the list given
+//
+int BinarySearch(int list[], int key, int size){
     int mid = 0, midValue = 0, lo = 0, hi = size;
 
     while(lo <= hi){
+        // compute the midpoint and retrieve the midpoint value
         mid = lo + ((hi-lo)/2);
         midValue = list[mid];
 
+        // if the key value is greater than the midpoint value
+        // set the left index (i.e. lo) to the new left index value (midpoint + 1)
+        // if the key value is less than the midpoint value
+        // set the right index (i.e. hi) to the new right index value (midpoint - 1)
+        // if all else fails, return the midpoint index
+        //
         if(key > midValue)
             lo = mid + 1;
         else if(key < midValue)
             hi = mid -1;
         else
-            return mid;
+            return mid;    // found key
     }
-    return -(lo+1);
+    return -(lo+1);        // key not found
 }
 
 // Name: FindSumToNumber
@@ -137,7 +153,7 @@ void FindSumToNumber(int list[], int S, int size){
         // use binary search to locate the (S-list_number[i]) in the list, return the index
         // This search performs on average in O(nlogn)
         //
-        idx = binarySearch(list,S-list[i],size);
+        idx = BinarySearch(list,S-list[i],size);
         
         // if we find that the number found + list_number[i] == S, print the pair (x,y)
         if(idx && ((list[i] + list[idx]) == S)){
@@ -145,7 +161,7 @@ void FindSumToNumber(int list[], int S, int size){
             // If we have found the pair (x,y) where x = 4, y = 6
             // we do not want to report (y,x) so let's mark it by removing it from the list
             //
-			list[i] = -1; 
+            list[i] = -1; 
         }
     }
 }
@@ -162,7 +178,7 @@ int main(void){
     // 
     QuickSort(num,N);
     PrintItems(num,N);
-    cout << "Testing BinarySearch To Find '5', Item is at index: " << binarySearch(num,5,N) << endl;
+    cout << "Testing BinarySearch To Find '5', Item is at index: " << BinarySearch(num,5,N) << endl;
     FindSumToNumber(num,13, N);
     return 0;
 }
