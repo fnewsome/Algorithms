@@ -3,6 +3,10 @@
 
 using namespace std;
 
+// Purpose: Find the number pairs (x,y) where x,y are integer values
+//          where x + y == S, where S is a given integer.
+//
+
 
 // Name: swap
 // 
