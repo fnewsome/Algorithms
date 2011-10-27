@@ -97,26 +97,42 @@ class Stack{
 };
 #endif
 
+//
+// Name: Stack
+// 
 template <class T>
 Stack<T>::Stack(){
     _stackPtr = new T[N];
 }
 
+//
+// Name: isFull
+//
 template <class T>
 bool Stack<T>::isFull() const{
     return _top == _size-1;
 }
 
+//
+// Name: getSize
+//
 template <class T>
 int Stack<T>::getSize() const{
     return _size;
 }
 
+
+// 
+// Name: isEmpty
+//
 template <class T>
 bool Stack<T>::isEmpty() const{
     return _top == -1;
 }
 
+//
+// Name: push
+//
 template <class T>
 bool Stack<T>::push(const T& item){
     bool result = false;
@@ -127,6 +143,9 @@ bool Stack<T>::push(const T& item){
     return result;
 }
 
+//
+// Name: pop
+//
 template <class T>
 bool Stack<T>::pop(T& item){
     bool result = false;
@@ -137,6 +156,9 @@ bool Stack<T>::pop(T& item){
     return result;
 }
 
+// 
+// Name: Stack
+//
 template <class T>
 Stack<T>::Stack(int size){
     _size = (size > 0 && size < 1000) ? size : N;
@@ -144,6 +166,9 @@ Stack<T>::Stack(int size){
     _stackPtr = new T[_size];
 }
 
+// 
+// Name: ~Stack
+//
 template <class T>
 Stack<T>::~Stack(){ 
     delete [] _stackPtr;
