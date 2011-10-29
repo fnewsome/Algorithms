@@ -21,7 +21,8 @@ int main(){
     numbers->InsertLast(10);
     numbers->PrintList();
     cout << "There are " << numbers->Length() << " items in the list of integers\n";    
-    
+    cout << "Reversed List: ";
+    numbers->PrintList(numbers->ReverseList());  
     numbers->Free();    
     return 0;
 }

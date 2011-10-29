@@ -117,7 +117,7 @@ class SLL{
         // 
         // Name: PrintList
         //
-        // Description: Print the items within the list
+        // Description: Print the items within the current list
         //
         void PrintList(){
             Node<T> *tmp = head;
@@ -128,6 +128,23 @@ class SLL{
             }
             cout << endl;
         }
+        
+        //
+        // Name: PrintList
+        //
+        // Description: Prints the items within the list
+        // 
+        // Arguments: Pointer to the head of the list
+        //
+        void PrintList(Node<T> *head){
+            Node<T> *tmp = head;
+            
+            while(tmp){
+                cout << tmp->item << " ";
+                tmp = tmp->next;
+            }
+            cout << endl;
+        }        
 
         // 
         // Name: Free
@@ -148,8 +165,31 @@ class SLL{
         //
         // Name: Length
         //
+        // Description: Returns the number of items in the list
+        //
+        // Returns: Number of items in the list
+        //
         int Length(){
             return _size;
+        }
+
+        //
+        // Name: ReverseList
+        // 
+        // Description: Reverses the items in the list
+        //
+        Node<T> *ReverseList(){
+            Node<T>* tmp = head;
+            Node<T>* prev = NULL;
+            Node<T>* next = NULL;
+
+            while(tmp){
+                next = tmp->next;
+                tmp->next = prev;
+                prev = tmp;
+                tmp = next;    
+            }
+            return prev;
         }
 
     private:
