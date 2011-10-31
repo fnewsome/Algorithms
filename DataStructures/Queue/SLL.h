@@ -14,7 +14,7 @@ class SLL{
         // 
         // Name: InsertFirst
         // 
-        // Description: Inserts a new item at the beginning of the list
+        // Description: Inserts a new item at the beginning of the list.
         //
         void InsertFirst(const T &item ){
             Node<T> *tmp = head;
@@ -46,7 +46,7 @@ class SLL{
         // 
         // Name: InsertLast
         //
-        // Description: Inserts a new item at the end of the list
+        // Description: Inserts a new item at the end of the list.
         //
         void InsertLast( const T &item ){
             Node<T> *tmp = head;
@@ -74,7 +74,7 @@ class SLL{
         // 
         // Name: InsertSorted
         // 
-        // Description: Inserts a new item in sorted order
+        // Description: Inserts a new item in sorted order.
         //
         void InsertSorted( const T &item){
             Node<T> *tmp = head;
@@ -117,7 +117,7 @@ class SLL{
         // 
         // Name: PrintList
         //
-        // Description: Print the items within the current list
+        // Description: Print the items within the current list.
         //
         void PrintList(){
             Node<T> *tmp = head;
@@ -132,9 +132,9 @@ class SLL{
         //
         // Name: PrintList
         //
-        // Description: Prints the items within the list
+        // Description: Prints the items within the list.
         // 
-        // Arguments: Pointer to the head of the list
+        // Arguments: Pointer to the head of the list.
         //
         void PrintList(Node<T> *head){
             Node<T> *tmp = head;
@@ -149,7 +149,7 @@ class SLL{
         // 
         // Name: Free
         //
-        // Description: Free the list and reclaim the allocated space
+        // Description: Free the list and reclaim the allocated space.
         //
         void Free(){
             Node<T> *tmp = head;
@@ -165,18 +165,38 @@ class SLL{
         //
         // Name: Length
         //
-        // Description: Returns the number of items in the list
+        // Description: Returns the number of items in the list.
         //
-        // Returns: Number of items in the list
+        // Returns: Number of items in the list.
         //
         int Length(){
             return _size;
         }
 
+        // 
+        // Name: GetHead
+        // 
+        // Description: Returns the head item in the list.
+        //
+        // Returns: Head of the list.
+        Node<T>* GetHead(){
+            return (NULL == head) ? NULL : head;
+        }
+        
+        // 
+        // Name: SetHead
+        //
+        // Description: Sets the head of the list to a value.
+        //  
+        void SetHead(Node<T> *newHead){
+            if(newHead)
+                head = newHead;
+        }
+        
         //
         // Name: ReverseList
         // 
-        // Description: Reverses the items in the list
+        // Description: Reverses the items in the list.
         //
         Node<T> *ReverseList(){
             Node<T>* tmp = head;
