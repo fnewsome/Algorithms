@@ -1,5 +1,7 @@
-#include "SLL.h"
+#ifndef _QUEUE_
+#define _QUEUE_
 
+#include "SLL.h"
 #include <iostream>
 using namespace std;
 
@@ -99,3 +101,4 @@ class Queue{
         SLL<T>* list;
         
 };
+#endif
